@@ -1,0 +1,25 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 250vh;
+    background-color: #fff;
+} */
+.navbar{
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    
+    background-color: rgba(153, 31, 126, 0.733);
+    transition: 0.4s;
+}
+.nav-link{
+    font-size: 1.25em;
+}
+.nav-link:active,
+.nav-link:focus,
+.nav-link:hover{
+    background-color: rgba(119, 10, 105, 0.459);
+}
