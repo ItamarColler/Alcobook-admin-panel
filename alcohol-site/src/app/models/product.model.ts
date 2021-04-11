@@ -1,13 +1,15 @@
 export class Product{
-    private title: string;
-    private image: string;
-    private body: string;
-    private ingredients: string[];
-    private steps: string[];
-    private date: Date;
-    private likes: number;
-    private comments: number;
-    private author: string;
+    constructor(
+    private title: string,
+    private image: string,
+    private body: string,
+    private ingredients: string[],
+    private steps: string[],
+    private date: Date,
+    private likes: number,
+    private comments: number,
+    private author: string,
+    ){}
 }
 // title: string;
 // image: schemaTypes.requiredString,

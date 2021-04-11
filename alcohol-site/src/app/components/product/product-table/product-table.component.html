@@ -1,1 +1,40 @@
-<p>product-table works!</p>
+<div class="content">
+    <table class="data" style="table-layout: fixed; width: 300px;">
+        <thead>
+            <tr>
+                <th *ngFor="let view of productView">
+                    {{view}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products" class="list-group-item clearfix">
+                <td>
+                    {{product.title}}
+                </td>
+                <td>
+                    <img src="{{product.image}}" alt="" style="height:50px;">
+                </td>
+                <td>
+                    {{product.body}}
+                </td>
+                <td *ngFor="let ing of product.ingredients">
+                    {{ing}}
+                </td>
+                <td *ngFor="let steps of product.steps">
+                    {{steps}}
+                </td>
+
+                <td>
+                    {{prodocut.likes}}
+                </td>
+                <td>
+                    {{prodocut.comments}}
+                </td>
+                <td>
+                    {{prodocut.author}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

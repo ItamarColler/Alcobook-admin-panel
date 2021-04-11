@@ -1,0 +1,28 @@
+.content {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    right: 25%;
+    bottom: 15%;
+    margin: 5% -5%;
+    display: inline-block;
+}
+.data{
+    display: grid;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 5;
+    font-size: 0.9em;
+    min-width: 400px;
+    text-align: left;
+
+}
+td {
+    padding: 10px 76px;
+}
+th ,tr{
+    padding: 10px 90px;
+    font-size: small;
+}
