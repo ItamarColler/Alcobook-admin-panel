@@ -1,10 +1,10 @@
 export class Comment {
     constructor(
-        private _id: string,
-        private body: string,
-        private author: string,
-        private date: Date,
-        private likes: number
+        public _id: string,
+        public body: string,
+        public author: string,
+        public date: Date,
+        public likes: number
     ) { }
 }
 // body: schemaTypes.requiredString,

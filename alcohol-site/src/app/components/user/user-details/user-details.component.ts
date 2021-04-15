@@ -17,9 +17,9 @@ export class UserDetailsComponent implements OnInit {
   }
   onSelected(index: number)
   {
-    this.user= this.userService.getUser(index);
+    // this.user= this.userService.getUser(index);
   }
-  gotoHeroes() {
+  gotoUsers() {
     this.router.navigate(['/users']);
   }
 }

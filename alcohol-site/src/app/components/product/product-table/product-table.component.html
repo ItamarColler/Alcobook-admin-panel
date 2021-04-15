@@ -11,15 +11,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of products" class="list-group-item clearfix">
+            <tr *ngFor="let d of data" class="list-group-item clearfix">
                 <td>
-                    {{product.title}}
+                    {{d.title}}
                 </td>
                 <td>
-                    <img src="{{product.image}}" alt="" style="height:50px;">
+                    <img src="{{d.image}}" alt="" style="height:50px;">
                 </td>
                 <!-- <td>
-                    {{product.body}}
+                    {{d.body}}
                 </td> -->
                 <!-- <td *ngFor="let ing of product.ingredients" >
                     {{ing}}
@@ -28,7 +28,7 @@
                     {{steps}}
                 </td> -->
                 <td>
-                    {{product.date}}
+                    {{d.date}}
                 </td>
                 <!-- <td>
                     {{prodocut.likes}}
@@ -40,7 +40,7 @@
                     {{prodocut.author}}
                 </td> -->
                 <td>
-                    <button class="btn btn-success" [routerLink]="['/product-details']">Details</button>
+                    <button class="btn btn-success" []="['/users', d._id]">Details</button>
                 </td>
             </tr>
         </tbody>

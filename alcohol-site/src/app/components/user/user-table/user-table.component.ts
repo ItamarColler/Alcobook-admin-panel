@@ -16,12 +16,11 @@ export class UserTableComponent implements OnInit {
   users: User[];
   userView: string[] = ['Name','Role','Cocktails','Likes','Comments',"Details"];
   ingridientData: number;
-  users$: Observable<Product[]>;
   index: number;
   constructor(private userService: UserService, private rout: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    // this.users = this.userService.getUsers();
 
   }
 

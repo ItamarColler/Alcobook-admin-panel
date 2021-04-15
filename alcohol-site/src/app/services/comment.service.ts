@@ -1,30 +1,43 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 import { Comment } from '../models/comment.model';
+import { User } from '../models/user.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentService {
-  commentsCollection = new Subject<Comment[]>();
+  errorMessage = "";
+  loginError = new BehaviorSubject<string>("");
+  registerError = new BehaviorSubject<string>("");
+  commentUrl = environment.commentUrl;
+  constructor(private userService : UserService, private http : HttpClient,private router: Router) { }
 
-  private comments: Comment[] = [
-    new Comment("1243",'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-      , 'David Guetta', new Date("3/5/2020"), 3),
-    new Comment("213","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      , 'David Guetta', new Date("3/8/2020"), 2),
-    new Comment("325","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      , 'David Guetta', new Date("3/6/2020"), 6),
-    new Comment("343","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      , 'David Guetta', new Date("3/9/2020"), 6)
-  ];
-  constructor() { }
-
-  getComents() {
-    return this.comments.slice();
+  getComments() {
   }
-  getComment(index: number)
+  getComment(_id : string )
   {
-    return this.comments[index];
+    this.http
+  }
+  addComment(_id: string, body: string, user: User)
+  {
+    const token = this.userService.getToken(); 
+    const headers =new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+token});
+    this.http.post<Comment>(this.commentUrl,{
+      body:body,
+      user: user,
+      id:_id
+    }).toPromise().then((data:any)=>{
+      console.log(data);
+      
+    }).catch( (error)=>{
+      this.errorMessage = error.error.error;
+      this.registerError.next(this.errorMessage);
+      console.log(this.errorMessage);
+    })
   }
 }

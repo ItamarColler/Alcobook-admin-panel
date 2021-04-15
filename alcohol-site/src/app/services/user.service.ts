@@ -1,30 +1,55 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { environment } from '../environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  
+  username= new BehaviorSubject<string>(JSON.parse(JSON.stringify(localStorage.getItem('UserName'))));
+  userId= new BehaviorSubject<string>(JSON.parse(JSON.stringify(localStorage.getItem('UserId'))));
   userCollection = new Subject<Comment>();
-  private users : User[] = [
-    new User("443","David", "Admin",4,5,6),
-    new User("123","David 1","User",4,5,8),
-    new User("234","David 2", "Admin",2,4,7),
-    new User("566","David 3", "User",2,3,7)
-  ]
-  constructor() { }
+  private userUrl = environment.userUrl;
+  constructor(private http :HttpClient, private router:Router) { 
+    // localStorage.setItem('token', data.token);
+    // localStorage.setItem('UserName', data.information.userName);
+    // localStorage.setItem('UserId', data.information._id);
 
-  getUsers()
-  {
-    return this.users.slice();
   }
-  getUser(index : number)
-  {
-    return this.users.slice()[index];
+
+  getToken(){
+    return localStorage.getItem('token');
   }
-  getUserLength()
-  {
-    return this.users.length;
+
+  getUserName(){
+    return this.username.toString();
+  }
+
+  updateName(userName: string) {
+    this.http.patch(this.userUrl+'/api/'+JSON.parse(JSON.stringify(localStorage.getItem('UserId'))),{
+      userName:userName
+    }).subscribe((data:any)=>{
+      console.log(data);
+      this.router.navigate(['']);
+    },(error)=>{
+      // this.errorMessage=error.error.error;
+      console.log(error);
+      
+    });
+  }
+  updatePassword(userPassword: string) {
+    this.http.patch(this.userUrl+'/api/'+JSON.parse(JSON.stringify(localStorage.getItem('UserId'))),{
+      userPassword:userPassword
+    }).subscribe((data:any)=>{
+      console.log(data);
+      // this.logoutUser();
+      this.router.navigate(['']);
+    },(error)=>{
+      console.log(error);
+    });
   }
 }

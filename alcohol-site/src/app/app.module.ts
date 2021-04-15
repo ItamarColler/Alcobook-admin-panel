@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { MaterialModule } from './material-module';
 import { EditProductComponent } from './components/product/edit-product/edit-product.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditProductComponent } from './components/product/edit-product/edit-pro
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

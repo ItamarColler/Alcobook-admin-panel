@@ -1,15 +1,15 @@
 export class Product{
     constructor(
-    private _id: string,
-    private title: string,
-    private image: string,
-    private body: string,
-    private ingredients: string[],
-    private steps: string[],
-    private date: Date,
-    private likes: number,
-    private comments: number,
-    private author: string,
+    public _id: string,
+    public title: string,
+    public image: string,
+    public body: string,
+    public ingredients: string[],
+    public steps: string[],
+    public date: Date,
+    public likes: string[],
+    public comments: string[],
+    public author: string,
     ){}
 }
 // title: string;
