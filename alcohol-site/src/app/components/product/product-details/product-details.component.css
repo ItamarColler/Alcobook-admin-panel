@@ -1,0 +1,23 @@
+.container{
+    /* width: auto; */
+    height: auto;
+    position: absolute;
+    top:5%;
+    left: 25%;
+    right: 25%;
+    bottom: 10%;
+    margin: 5% -5%;
+    display: inline-block;
+}
+.card-deck{
+    min-height: 750px;
+}
+img{
+    height: 25%;
+    width: 35%;
+    margin-left: 35%;
+
+}
+p, li{
+    font-size:medium;
+}
