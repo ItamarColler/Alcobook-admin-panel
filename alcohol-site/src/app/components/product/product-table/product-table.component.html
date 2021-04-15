@@ -5,6 +5,9 @@
                 <th *ngFor="let view of productView">
                     {{view}}
                 </th>
+                <th>
+                    Details
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -15,26 +18,32 @@
                 <td>
                     <img src="{{product.image}}" alt="" style="height:50px;">
                 </td>
-                <td>
+                <!-- <td>
                     {{product.body}}
-                </td>
-                <td *ngFor="let ing of product.ingredients">
+                </td> -->
+                <!-- <td *ngFor="let ing of product.ingredients" >
                     {{ing}}
-                </td>
-                <td *ngFor="let steps of product.steps">
+                </td> -->
+                <!-- <td *ngFor="let steps of product.steps">
                     {{steps}}
-                </td>
-
+                </td> -->
                 <td>
+                    {{product.date}}
+                </td>
+                <!-- <td>
                     {{prodocut.likes}}
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                     {{prodocut.comments}}
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                     {{prodocut.author}}
+                </td> -->
+                <td>
+                    <button class="btn btn-success" [routerLink]="['/product-details']">Details</button>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </div>

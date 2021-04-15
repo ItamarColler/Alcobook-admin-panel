@@ -1,0 +1,37 @@
+.content {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    right: 25%;
+    bottom: 15%;
+    margin: 5% -5%;
+    display: inline-block;
+}
+.data{
+    display: grid;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 5;
+    min-width: 400px;
+    text-align: left;
+}
+td {
+    /* padding: 15px 80px 15px 10px;  */
+    width: 90px;
+    text-align:center;
+    font-size: 14px;
+    box-sizing:content-box;
+}
+th{
+    padding: 10px 20px; 
+    font-size: 14px;
+    box-sizing:content-box;
+}
+button{
+    font-size: 14px;
+}
+/* tr {
+    align-content: space-around;
+} */

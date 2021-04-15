@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  productCollection = new Subject<Comment>();
+  
   private products: Product[] = [
-    new Product(
+    new Product("356",
       "Water Melon Drink",
       "https://img.delicious.com.au/CKMUcpx-/w1200/del/2015/11/summer-cocktails-24374-3.jpg",
       "Watermelon and vodka ",
@@ -26,7 +25,7 @@ export class ProductService {
       6,
       3,
       "Matt preston"),
-    new Product(
+    new Product("233",
       "Water Melon Drink",
       "https://img.delicious.com.au/CKMUcpx-/w1200/del/2015/11/summer-cocktails-24374-3.jpg",
       "Watermelon and vodka is a combination that always rings party bells for Matt Preston. Add mint, a little garnish of a feta and olive skewer and you've recreated the ﬂavours a classic summer salad!"
@@ -45,7 +44,7 @@ export class ProductService {
       6,
       3,
       "Matt preston"),
-    new Product(
+    new Product("256",
       "Water Melon Drink",
       "https://img.delicious.com.au/CKMUcpx-/w1200/del/2015/11/summer-cocktails-24374-3.jpg",
       "Watermelon and vodka is a "
@@ -65,9 +64,12 @@ export class ProductService {
       3,
       "Matt preston")
   ];
-  constructor() { }
 
   getProducts() {
+    // this.productSubject.subscribe((prod)=>
+    // {
+    //   this.products=prod;
+    // })
     return this.products.slice();
 
   }

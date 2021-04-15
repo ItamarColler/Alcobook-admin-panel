@@ -13,6 +13,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { MaterialModule } from './material-module'
 
 @NgModule({
   declarations: [
@@ -25,12 +26,13 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     ProductDetailsComponent,
     NavigationComponent,
     LoginComponent,
-    StatisticsComponent
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

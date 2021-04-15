@@ -1,5 +1,6 @@
 export class Comment {
     constructor(
+        private _id: string,
         private body: string,
         private author: string,
         private date: Date,

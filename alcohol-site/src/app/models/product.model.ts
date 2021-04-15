@@ -1,5 +1,6 @@
 export class Product{
     constructor(
+    private _id: string,
     private title: string,
     private image: string,
     private body: string,

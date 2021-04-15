@@ -1,0 +1,16 @@
+.content {
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    right: 25%;
+    bottom: 15%;
+    margin: 5% -5%;
+    display: inline-block;
+    border: 4px solid #2344;
+    
+}
+.form-signin{
+    margin-top: 14%;
+}

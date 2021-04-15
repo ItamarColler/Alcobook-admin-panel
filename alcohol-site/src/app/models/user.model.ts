@@ -1,5 +1,6 @@
 export class User {
     constructor(
+        private _id:string,
         private name: string,
         private role: string,
         private cocktails: number,
