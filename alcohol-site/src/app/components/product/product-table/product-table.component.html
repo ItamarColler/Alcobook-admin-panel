@@ -1,3 +1,5 @@
+
+
 <div class="content">
     <table class="data" style="table-layout: fixed; width: 300px;">
         <thead>
@@ -9,38 +11,20 @@
                     Details
                 </th>
             </tr>
-        </thead>
+        </thead>    
         <tbody>
-            <tr *ngFor="let d of data" class="list-group-item clearfix">
+            <tr *ngFor="let product of data" >
                 <td>
-                    {{d.title}}
+                    {{product.title}}
                 </td>
                 <td>
-                    <img src="{{d.image}}" alt="" style="height:50px;">
+                    <img src="{{product.image}}" alt="" style="height:50px;">
                 </td>
-                <!-- <td>
-                    {{d.body}}
-                </td> -->
-                <!-- <td *ngFor="let ing of product.ingredients" >
-                    {{ing}}
-                </td> -->
-                <!-- <td *ngFor="let steps of product.steps">
-                    {{steps}}
-                </td> -->
                 <td>
-                    {{d.date}}
+                    {{product.date | date: 'fullDate'}}
                 </td>
-                <!-- <td>
-                    {{prodocut.likes}}
-                </td> -->
-                <!-- <td>
-                    {{prodocut.comments}}
-                </td> -->
-                <!-- <td>
-                    {{prodocut.author}}
-                </td> -->
                 <td>
-                    <button class="btn btn-success" []="['/users', d._id]">Details</button>
+                    <button class="btn btn-success" (click)="onSelected(product._id)" [routerLink]="['/product-details']">Details</button>
                 </td>
             </tr>
         </tbody>

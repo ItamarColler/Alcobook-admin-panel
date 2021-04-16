@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-product-table',
@@ -12,25 +14,29 @@ export class ProductTableComponent implements OnInit {
   productView: string[] = [
     'Name',
     'Image',
-    /*'Description',
-    'Ingredients',
-    'Steps'*/,
-    'Submited',
-    /*,'Likes',
-  'Comments',
-'Publisher'*/];
-  ingridientData: number;
+    'CreatedAt'
+  ];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
+    this.data=new Array<any>();
   }
 
   ngOnInit(): void {
     this.getProducts();
   }
-  getProducts() {
-    this.productService.getProducts().subscribe(
-      (data) => {
-        this.data = data;
-      });
+  private getProducts() {
+    var p : Product=null;
+    this.productService.getProducts().subscribe(data=>{
+     // console.log(data);
+data.forEach((element:any)=>{
+   p=new Product(element._id,element.title,element.image,element.body,element.ingredients,element.steps,element.createdAt,element.likes,element.comments,element.author);
+  this.data.push(p);
+});
+//console.log(this.data);
+    });
+  }
+
+  private onSelected(id:string){
+    this.productService.currentProductId.next(id);
   }
 }

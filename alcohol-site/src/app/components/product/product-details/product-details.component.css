@@ -1,5 +1,5 @@
 .container{
-    /* width: auto; */
+    width: auto;
     height: auto;
     position: absolute;
     top:5%;
@@ -10,8 +10,12 @@
     display: inline-block;
 }
 .card-deck{
-    min-height: 750px;
+    min-height: max-content;
 }
+/* .card-text{
+    font-size: small;
+
+} */
 img{
     height: 25%;
     width: 35%;

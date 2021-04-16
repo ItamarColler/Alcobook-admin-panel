@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { Product } from '../models/product.model';
 import { UserService } from './user.service';
@@ -10,42 +12,82 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class ProductService {
-  
-  currentProductId = new BehaviorSubject<string>("");
+ 
+
   ingredient: Array<any>;
-  steps:Array<any>;
+  steps: Array<any>;
   description: "";
   likes: "";
   date: Date;
   title: "";
   author: "";
-
-
   errorMessage = "";
+  
+  currentProduct:Product;
+  selectedProduct: BehaviorSubject<Product>;
+
+  currentProductId = new BehaviorSubject<string>("");
   loginError = new BehaviorSubject<string>("");
   registerError = new BehaviorSubject<string>("");
 
 
   private AlcobookUrl = environment.cocktailUrl;
-  constructor(private http: HttpClient, private userService: UserService) { }
-    getProducts():Observable<Product[]> {
-     
+  constructor(private http: HttpClient, private userService: UserService,private router: Router) {
+
+   }
+  getProducts() {
     //console.log("df")
-      return this.http.get<Product[]>(this.AlcobookUrl);
+    return this.http.get<{ [key: string]: Product }>(this.AlcobookUrl).pipe(
+      map((data) => {
+        const prodArray = [];
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            prodArray.push({ ...data[key], id: key });
+          }
+        }
+        return prodArray;
+      })
+    );
 
   }
-  getProduct(index: number) {
+  getProduct() {
     // return this.products[index];
+    const url=this.AlcobookUrl+"/"+this.currentProductId.value;
+    return this.http.get<Product>(url);
   }
-  addProduct(product: Product)
-  {
-    const token = this.userService.getToken(); 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer '+token });
-    this.http.post<Product>(this.AlcobookUrl,{
-      title: product.title,
-
+  addProduct(product: Product) {
+    const token = this.userService.getToken();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+    this.http.post<Product>(this.AlcobookUrl, {
+      product
     })
+      .subscribe(res => {
+        console.log(res);
+      })
+  }
+  updateTitle(title: string) {
+    this.http.patch(this.AlcobookUrl+"/"+this.currentProductId.value,{
+      title: title
+    }).subscribe((data)=>
+    {
+      console.log(data);
+      this.router.navigate(['/home']);
+    })
+  }
+  updateDescription(description: string)
+  {
 
+  }
+  updateIngredient(ingredient: string, index: number)
+  {
+
+  }
+  updateStep(step: string, index: number)
+  {
+
+  }
+  updateAuthor(author: string)
+  {
 
   }
 }

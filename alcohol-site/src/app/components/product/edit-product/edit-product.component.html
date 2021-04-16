@@ -1,1 +1,29 @@
-<p>edit-product works!</p>
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="">Title</label>
+            <input ng-model="productEditObj.title" name="title" class="form-control" value="{{productEditObj.title}}">
+        </div>
+        <div class="form-group">
+            <label for="">Description </label>
+            <textarea ng-model="productEditObj.description" name="description" class="form-control" value="{{productEditObj.description}}" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="">Ingredients</label>
+            <input type="text" ng-model="productEditObj.ingredients" name="ingredients" class="form-control" *ngFor="let i of productEditObj.ingredients;" value="{{i}}">
+            <input type="text" *ngIf="ingReady()" [(ngModel)]="this.newIngredient.body"  class="form-control" placeholder="{{newIngredient.body}}" ngModel>
+            <button type="button"  *ngIf="!ingReady()" (click)="updateClicked()" class="btn btn-success">Add Ingredient</button>
+            <button type="button"  *ngIf="ingReady()" (click)="confirmIngredient()" class="btn btn-warning">Confirm</button>
+
+        </div>
+        <div class="form-group">
+            <label for="">steps</label>
+            <textarea ng-model="productEditObj.steps" name="steps"  class="form-control" rows="2" *ngFor="let i of productEditObj.steps;" value="{{i}}"></textarea>
+            <button type="button" class="btn btn-success">Add A Step</button>
+        </div>
+        <div class="form-group">
+            <label for="">Author </label>
+            <input type="text" ng-model="productEditObj.author" class="form-control" value="{{productEditObj.author}}">
+        </div>
+    </form>
+</div>
