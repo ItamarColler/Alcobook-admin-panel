@@ -31,7 +31,7 @@ export class ProductService {
     getProducts():Observable<Product[]> {
      
     //console.log("df")
-      return this.http.get<any>(this.AlcobookUrl);
+      return this.http.get<Product[]>(this.AlcobookUrl);
 
   }
   getProduct(index: number) {
@@ -43,7 +43,7 @@ export class ProductService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer '+token });
     this.http.post<Product>(this.AlcobookUrl,{
       title: product.title,
-      
+
     })
 
 

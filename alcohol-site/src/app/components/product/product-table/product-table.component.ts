@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-table.component.css']
 })
 export class ProductTableComponent implements OnInit {
-  data: Array<any>;
+  data: Product[];
   productView: string[] = [
     'Name',
     'Image',
@@ -22,7 +22,6 @@ export class ProductTableComponent implements OnInit {
   ingridientData: number;
 
   constructor(private productService: ProductService) {
-    this.data = new Array<any>();
   }
 
   ngOnInit(): void {
@@ -30,10 +29,8 @@ export class ProductTableComponent implements OnInit {
   }
   getProducts() {
     this.productService.getProducts().subscribe(
-      (data:any) => {
-        data.map(ele=> {
-          this.data.push(ele);
-        });
-        });
+      (data) => {
+        this.data = data;
+      });
   }
 }
