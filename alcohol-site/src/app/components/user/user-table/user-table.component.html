@@ -8,21 +8,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of data; let i" class="list-group-item clearfix">
+      <tr *ngFor="let user of data; let i=index" class="list-group-item clearfix" userForm>
         <td scope="row">
-          {{ user._id }}
+          <p>{{user.username}}</p>
+          <input *ngIf="i==getInputIndex()" type="text" [(ngModel)]="userObj.userName" (click)="editEnable()" name="userid" id="userid" placeholder="{{ user.username }}" required ngModel>
         </td>
         <td scope="row">
-          {{ user.role }}
-        </td>
+          <div>
+          <p>{{user.role}}</p>
+          <input *ngIf="i==getInputIndex()" type="text" (click)="editEnable()" [(ngModel)]="userObj.userRole" name="role" id="role" placeholder="{{ user.role }}" ngModel>
+       </div> </td>
         <td scope="row">
-          <button
-            class="btn btn-success"
-            [index]="i + 1"
-            (click)="onSelected(user._id)"
-          >
-            Details
-          </button>
+          <button  class="btn btn-danger" (click)="updateIndex(i)" >EDIT</button>
+          <button *ngIf="i==getInputIndex()" class="btn btn-danger" (click)="editUser(user._id)" >Confirm</button>
+
         </td>
       </tr>
     </tbody>

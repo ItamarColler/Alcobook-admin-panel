@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +18,11 @@ export class UserTableComponent implements OnInit {
     'Role',
     'Details',
   ];
-
+  showInput:number;
+  userEdit=false;
+  @Input() userObj={
+    userName:'', userRole:''
+  }
   constructor(private userService: UserService, private router: Router) {
     this.data = new Array<any>();
   }
@@ -29,10 +33,12 @@ export class UserTableComponent implements OnInit {
   private getUsers() {
     var user: User = null;
     this.userService.getUsers().subscribe((data) => {
+
       data.forEach((element: any) => {
+        console.log(element);
         user = new User(
-          element.username,
           element._id,
+          element.username,
           element.role,
           element.token
         );
@@ -40,7 +46,28 @@ export class UserTableComponent implements OnInit {
       });
     });
   }
+  editEnable()
+  {
+    this.userEdit=!this.userEdit;
+  }
+  editUser(id: string)
+  {
+    this.userService.updateName(this.userObj.userName,id);
+    this.userService.updateRole(this.userObj.userRole,id);
+  }
+  editTest(){
+    console.log(this.userObj.userName);
+  }
   private onSelected(id: string) {
     this.userService.currentUserId.next(id);
+  }
+  updateIndex( i: number){
+    this.userObj.userName="";
+    this.userObj.userRole="";
+    this.showInput=i;
+
+  }
+  getInputIndex(){
+    return this.showInput;
   }
 }

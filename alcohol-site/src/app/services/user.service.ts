@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -10,6 +10,7 @@ import { User } from '../models/user.model';
   providedIn: 'root',
 })
 export class UserService {
+
   username = new BehaviorSubject<string>(
     JSON.parse(JSON.stringify(localStorage.getItem('UserName')))
   );
@@ -50,27 +51,36 @@ export class UserService {
   getUserName() {
     return this.username.toString();
   }
+  updateRole(userRole: string,id:string) {
 
-  updateName(userName: string) {
-    this.http
-      .patch(
-        this.userUrl +
-          '/api/' +
-          JSON.parse(JSON.stringify(localStorage.getItem('UserId'))),
-        {
-          userName: userName,
-        }
-      )
-      .subscribe(
-        (data: any) => {
-          console.log(data);
-          this.router.navigate(['']);
+  }
+  updateName(userName: string, id:string) {
+    const token = this.getToken();
+    let headers=new HttpHeaders();
+    headers=headers.append('Content-type','application/json');
+    headers.append('Authorization','sdlfjkjhnn');
+    console.log(headers);
+    const options={
+      headers,
+      body:{
+        username:userName,
+        user: {
+          _id: '6076c3e4d145df5910a70ac8',
+          username: 'System',
+          role: 'Admin',
+          token:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN5c3RlbSIsImlkIjoiNjA3NmMzZTRkMTQ1ZGY1OTEwYTcwYWM4IiwiZXhwIjoxNjIzODcxODQ5LCJpYXQiOjE2MTg2ODc4NDl9.6nFJ9HWZ6-hZ7V3Bhl4H3dyLcowRZk2ZonMlNfeevLg',
         },
-        (error) => {
-          // this.errorMessage=error.error.error;
-          console.log(error);
-        }
-      );
+      }
+    };
+    this.http.patch<any>(this.userUrl+'/'+id,{
+      options
+
+    }).subscribe((data)=>
+    {
+      console.log(data);
+    }
+    );
   }
   updatePassword(userPassword: string) {
     this.http
