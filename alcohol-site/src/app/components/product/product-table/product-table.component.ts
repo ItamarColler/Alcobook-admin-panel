@@ -7,36 +7,49 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 @Component({
   selector: 'app-product-table',
   templateUrl: './product-table.component.html',
-  styleUrls: ['./product-table.component.css']
+  styleUrls: ['./product-table.component.css'],
 })
 export class ProductTableComponent implements OnInit {
   data: Product[];
-  productView: string[] = [
-    'Name',
-    'Image',
-    'CreatedAt'
-  ];
+  productView: string[] = ['Name', 'Image', 'CreatedAt'];
 
   constructor(private productService: ProductService, private router: Router) {
-    this.data=new Array<any>();
+    this.data = new Array<any>();
   }
 
   ngOnInit(): void {
     this.getProducts();
   }
   private getProducts() {
-    var p : Product=null;
-    this.productService.getProducts().subscribe(data=>{
-     // console.log(data);
-data.forEach((element:any)=>{
-   p=new Product(element._id,element.title,element.image,element.body,element.ingredients,element.steps,element.createdAt,element.likes,element.comments,element.author);
-  this.data.push(p);
-});
-//console.log(this.data);
+    this.data=[];
+    var p: Product = null;
+    this.productService.getProducts().subscribe((data) => {
+      data.forEach((element: any) => {
+        p = new Product(
+          element._id,
+          element.title,
+          element.image,
+          element.body,
+          element.ingredients,
+          element.steps,
+          element.createdAt,
+          element.likes,
+          element.comments,
+          element.author
+        );
+        this.data.push(p);
+      });
     });
   }
 
-  private onSelected(id:string){
+  private onSelected(id: string) {
     this.productService.currentProductId.next(id);
+  }
+  private onDelete(id:string){
+
+    this.productService.deleteProduct(id);
+    this.data=[];
+    this.getProducts();
+
   }
 }

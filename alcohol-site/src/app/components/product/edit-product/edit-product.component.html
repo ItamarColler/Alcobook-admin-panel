@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <<div class="container">
     <form>
         <div class="form-group">
             <label for="">Title</label>
@@ -10,11 +10,10 @@
         </div>
         <div class="form-group">
             <label for="">Ingredients</label>
-            <input type="text" ng-model="productEditObj.ingredients" name="ingredients" class="form-control" *ngFor="let i of productEditObj.ingredients;" value="{{i}}">
-            <input type="text" *ngIf="ingReady()" [(ngModel)]="this.newIngredient.body"  class="form-control" placeholder="{{newIngredient.body}}" ngModel>
-            <button type="button"  *ngIf="!ingReady()" (click)="updateClicked()" class="btn btn-success">Add Ingredient</button>
+            <input type="text" [(ngModel)]="productEditObj.ingredients" name="ingredients" class="form-control" *ngFor="let i of productEditObj.ingredients;let indexOfElement=index" value="{{i}}">
+            <button type="button"  *ngIf="!ingReady()" (click)="updateClicked()" class="btn btn-success">Add Ingretext inpidient</button>
             <button type="button"  *ngIf="ingReady()" (click)="confirmIngredient()" class="btn btn-warning">Confirm</button>
-
+            {{this.newIngredient}}
         </div>
         <div class="form-group">
             <label for="">steps</label>
@@ -26,4 +25,83 @@
             <input type="text" ng-model="productEditObj.author" class="form-control" value="{{productEditObj.author}}">
         </div>
     </form>
+</div>
+ -->
+
+<div class="container">
+  <form (ngSubmit)="addIngredient(ingf)" #ingf="ngForm">
+    <div class="form-group">
+      <label for="">Description </label>
+      <textarea
+        ng-model="productEditObj.description"
+        name="description"
+        class="form-control"
+        value="{{ productEditObj.description }}"
+        rows="3"
+      ></textarea>
+    </div>
+    <label for="ingredient">Ingredients</label>
+    <div class="form-group" *ngFor="let ing of productEditObj.ingredients">
+      <input
+        type="text"
+        id="ingredient"
+        name="ingredient"
+        class="form-control"
+        placeholder="{{ ing }}"
+        ngModel
+        required
+      />
+    </div>
+    <button
+      type="button"
+      *ngIf="!ingReady()"
+      (click)="updateClicked()"
+      class="btn btn-success"
+    >
+      Add Ingredient
+    </button>
+    <button
+      type="button"
+      *ngIf="ingReady()"
+      (click)="confirmIngredient()"
+      class="btn btn-warning"
+    >
+      Confirm
+    </button>
+    <label for="">Steps</label>
+    </form>
+    </div>
+<div class="container">
+    <form (ngSubmit)="addStep(stepf)" #stepf="ngForm">
+    <div
+      class="form-group"
+      *ngFor="let step of productEditObj.steps"
+      ngForTrackBy
+    >
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"></div>
+        </div>
+        <textarea
+          name="steps"
+          id="steps"
+          class="form-control"
+          rows="2"
+          placeholder="{{ step }}"
+          ngModel
+          required
+          >{{ steps }}</textarea
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Author </label>
+      <input
+        type="text"
+        ng-model="productEditObj.author"
+        class="form-control"
+        value="{{ productEditObj.author }}"
+      />
+    </div>
+  </form>
 </div>

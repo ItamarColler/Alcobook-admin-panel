@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { from } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -15,13 +17,12 @@ export class EditProductComponent implements OnInit {
     steps:[""],
     author: ''
   }
+  newIngredient = "";
 
   ingLength:number;
   stepsLength:number;
   readyToConfirm=false;
   submitted = false;
-  @Input() 
-  newIngredient:string;
   constructor(private productService: ProductService) {
   }
 
@@ -41,8 +42,8 @@ export class EditProductComponent implements OnInit {
         this.productEditObj.author=data.author;
         this.ingLength=data.ingredients.length;
         this.stepsLength=data.steps.length;
-        
       }
+      console.log(this.ingLength);
       console.log("here"+" "+this.productEditObj.ingredients[2]);
     }
     )
@@ -73,15 +74,24 @@ export class EditProductComponent implements OnInit {
   updateAuthor(){
     this.productService.updateAuthor(this.productEditObj.title);
   }
-  addIngredient()
+  addIngredient(form:NgForm)
   {
+    const value = form.value;
+    const newIngredient = new String(value.ingredient).toString();
+    console.log(newIngredient);
+    this.productEditObj.ingredients.push(newIngredient);
+
     //this.productEditObj.ingredients.push("");
-    this.updateClicked();
+    // this.updateClicked();
   }
   confirmIngredient(){
    // this.productEditObj.ingredients.pop();
    this.updateClicked();
    console.log(this.newIngredient);
     this.productEditObj.ingredients.push(this.newIngredient);
+  }
+  addStep(form: NgForm)
+  {
+
   }
 }

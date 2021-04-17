@@ -16,6 +16,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { MaterialModule } from './material-module';
 import { EditProductComponent } from './components/product/edit-product/edit-product.component'
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,16 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     StatisticsComponent,
     EditProductComponent,
+    DeleteConfirmationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule 
+    HttpClientModule,
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

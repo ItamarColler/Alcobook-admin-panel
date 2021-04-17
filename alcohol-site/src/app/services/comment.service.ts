@@ -21,23 +21,8 @@ export class CommentService {
   }
   getComment(_id : string )
   {
-    this.http
+    this.http.get<Comment>(this.commentUrl)
   }
-  addComment(_id: string, body: string, user: User)
-  {
-    const token = this.userService.getToken(); 
-    const headers =new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+token});
-    this.http.post<Comment>(this.commentUrl,{
-      body:body,
-      user: user,
-      id:_id
-    }).toPromise().then((data:any)=>{
-      console.log(data);
-      
-    }).catch( (error)=>{
-      this.errorMessage = error.error.error;
-      this.registerError.next(this.errorMessage);
-      console.log(this.errorMessage);
-    })
-  }
+
+
 }

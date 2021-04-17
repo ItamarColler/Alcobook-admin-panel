@@ -7,13 +7,14 @@ import { ProductComponent } from './components/product/product.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { UserComponent } from './components/user/user.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 const routes: Routes = [
   {
     path: 'users', component: UserComponent, children: [
-      { path: 'users/:id', component: UserDetailsComponent }
     ]
   },
+  { path: 'user-details', component: UserDetailsComponent },
   {
     path: 'products', component: ProductComponent, children: [
       { path: 'products/:id', component: ProductDetailsComponent }
@@ -30,6 +31,9 @@ const routes: Routes = [
   },
   {
     path: 'edit-product', component: EditProductComponent
+  },
+  {
+    path: 'confirm-delete', component: DeleteConfirmationComponent
   }
 ];
 

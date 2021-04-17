@@ -1,33 +1,40 @@
-
-
 <div class="content">
-    <table class="data" style="table-layout: fixed; width: 300px;">
-        <thead>
-            <tr class="list-group-item clearfix">
-                <th *ngFor="let view of productView">
-                    {{view}}
-                </th>
-                <th>
-                    Details
-                </th>
-            </tr>
-        </thead>    
-        <tbody>
-            <tr *ngFor="let product of data" >
-                <td>
-                    {{product.title}}
-                </td>
-                <td>
-                    <img src="{{product.image}}" alt="" style="height:50px;">
-                </td>
-                <td>
-                    {{product.date | date: 'fullDate'}}
-                </td>
-                <td>
-                    <button class="btn btn-success" (click)="onSelected(product._id)" [routerLink]="['/product-details']">Details</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+  <table class="data" style="table-layout: fixed; width: 300px">
+    <thead>
+      <tr class="list-group-item clearfix">
+        <th *ngFor="let view of productView">
+          {{ view }}
+        </th>
+        <th>Details</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of data">
+        <td>
+          {{ product.title }}
+        </td>
+        <td>
+          <img src="{{ product.image }}" alt="" style="height: 50px" />
+        </td>
+        <td>
+          {{ product.date | date: "fullDate" }}
+        </td>
+        <td>
+          <button
+            class="btn btn-success"
+            (click)="onSelected(product._id)"
+            [routerLink]="['/product-details']"
+          >
+            Details
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="onDelete(product._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

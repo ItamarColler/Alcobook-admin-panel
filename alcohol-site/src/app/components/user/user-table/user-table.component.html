@@ -1,34 +1,30 @@
 <div class="content">
-    <table class="data" style="table-layout: fixed; width: 300px;">
-        <thead>
-            <tr  class="list-group-item clearfix">
-                <th scope="col" *ngFor="let view of userView">
-                    {{view}}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users; let i " class="list-group-item clearfix">
-                <td scope="row">
-                    {{user.name}}
-                </td>
-                <td scope="row">
-                    {{user.role}}
-                </td>  
-                <td scope="row">
-                    {{user.cocktails}}
-                </td> 
-                <td scope="row">
-                    {{user.likes}}
-                </td> 
-                <td scope="row">
-                    {{user.comments}}
-                </td>
-                <td scope="row">
-                    <button class="btn btn-success"  [index]="i+1" [routerLink]="['/users',index]">Details</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+  <table class="data" style="table-layout: fixed; width: 300px">
+    <thead>
+      <tr class="list-group-item clearfix">
+        <th  *ngFor="let view of userView">
+          {{ view }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of data; let i" class="list-group-item clearfix">
+        <td scope="row">
+          {{ user._id }}
+        </td>
+        <td scope="row">
+          {{ user.role }}
+        </td>
+        <td scope="row">
+          <button
+            class="btn btn-success"
+            [index]="i + 1"
+            (click)="onSelected(user._id)"
+          >
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
