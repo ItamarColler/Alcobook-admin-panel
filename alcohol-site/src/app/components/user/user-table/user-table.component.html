@@ -2,26 +2,45 @@
   <table class="data" style="table-layout: fixed; width: 300px">
     <thead>
       <tr class="list-group-item clearfix">
-        <th  *ngFor="let view of userView">
+        <th *ngFor="let view of userView">
           {{ view }}
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of data; let i=index" class="list-group-item clearfix" userForm>
+      <tr
+        *ngFor="let user of data; let i = index"
+        class="list-group-item clearfix"
+        userForm
+      >
         <td scope="row">
-          <p>{{user.username}}</p>
-          <input *ngIf="i==getInputIndex()" type="text" [(ngModel)]="userObj.userName" (click)="editEnable()" name="userid" id="userid" placeholder="{{ user.username }}" required ngModel>
+          <p>{{ user.username }}</p>
+          <input
+            *ngIf="i == getInputIndex()"
+            type="text"
+            [(ngModel)]="userObj.userName"
+            (click)="editEnable()"
+            name="userid"
+            id="userid"
+            placeholder="{{ user.username }}"
+            required
+            ngModel
+          />
         </td>
         <td scope="row">
           <div>
-          <p>{{user.role}}</p>
-          <input *ngIf="i==getInputIndex()" type="text" (click)="editEnable()" [(ngModel)]="userObj.userRole" name="role" id="role" placeholder="{{ user.role }}" ngModel>
-       </div> </td>
-        <td scope="row">
-          <button  class="btn btn-danger" (click)="updateIndex(i)" >EDIT</button>
-          <button *ngIf="i==getInputIndex()" class="btn btn-danger" (click)="editUser(user._id)" >Confirm</button>
-
+            <p>{{ user.role }}</p>
+            <input
+              *ngIf="i == getInputIndex()"
+              type="text"
+              (click)="editEnable()"
+              [(ngModel)]="userObj.userRole"
+              name="role"
+              id="role"
+              placeholder="{{ user.role }}"
+              ngModel
+            />
+          </div>
         </td>
       </tr>
     </tbody>

@@ -12,19 +12,18 @@
 .card-deck{
     min-height: max-content;
 }
-/* .card-text{
-    font-size: small;
 
-} */
 img{
     height: 25%;
     width: 35%;
-    margin-left: 35%;
-
 }
 p, li{
     font-size:medium;
 }
 h5{
-  border: 2px thin slategray;
+  margin-top: 10px;
+
+}
+p{
+  width: fit-content;
 }

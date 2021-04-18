@@ -87,7 +87,7 @@ export class ProductService {
     this.http
       .delete(this.AlcobookUrl + '/' + id, options)
       .subscribe((data: any) => {
-        this.router.navigate(['/confirm-delete']);
+        this.router.navigate(['/users']);
         console.log(data);
       });
   }
@@ -108,7 +108,7 @@ export class ProductService {
       })
       .subscribe((data) => {
         console.log(data);
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       });
   }
   updateDescription(description: string) {}

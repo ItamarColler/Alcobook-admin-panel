@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
-import { switchMap } from 'rxjs/operators';
-import { Product } from 'src/app/models/product.model';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-user-table',
@@ -16,7 +14,6 @@ export class UserTableComponent implements OnInit {
   userView: string[] = [
     'Name',
     'Role',
-    'Details',
   ];
   showInput:number;
   userEdit=false;
@@ -54,9 +51,6 @@ export class UserTableComponent implements OnInit {
   {
     this.userService.updateName(this.userObj.userName,id);
     this.userService.updateRole(this.userObj.userRole,id);
-  }
-  editTest(){
-    console.log(this.userObj.userName);
   }
   private onSelected(id: string) {
     this.userService.currentUserId.next(id);
