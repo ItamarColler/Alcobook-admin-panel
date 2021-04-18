@@ -15,17 +15,17 @@ import * as d3Axis from 'd3';
 export class StatisticsComponent implements OnInit {
   public title = 'Line Chart';
   public data: any[] = [
-    { date: new Date('2010-01-01'), value: 40 },
-    { date: new Date('2010-01-04'), value: 93 },
-    { date: new Date('2010-01-05'), value: 95 },
-    // {date: new Date('2010-01-06'), value: 130},
-    // {date: new Date('2010-01-07'), value: 110},
-    // {date: new Date('2010-01-08'), value: 120},
-    // {date: new Date('2010-01-09'), value: 129},
-    // {date: new Date('2010-01-10'), value: 107},
-    // {date: new Date('2010-01-11'), value: 140},
+    {date: new Date('2010-01-01'), value: 0 },
+    {date: new Date('2010-01-04'), value: 93 },
+    {date: new Date('2010-01-05'), value: 95 },
+    {date: new Date('2010-01-06'), value: 203},
+    {date: new Date('2010-01-07'), value: 110},
+    {date: new Date('2010-01-08'), value: 120},
+    {date: new Date('2010-01-09'), value: 129},
+    {date: new Date('2010-01-10'), value: 180},
+    {date: new Date('2010-01-11'), value: 150},
   ];
-  private margin = { top: 20, right: 20, bottom: 30, left: 50 };
+  private margin = { top: 10, right: 20, bottom: 30, left: 50 };
   private width: number;
   private height: number;
   private x: any;
@@ -34,7 +34,7 @@ export class StatisticsComponent implements OnInit {
   private line: d3Shape.Line<[number, number]>; // this is line defination
 
   constructor(private productService: ProductService) {
-    this.width = 960 - this.margin.left - this.margin.right;
+    this.width = 1060 - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
   }
 
@@ -42,20 +42,21 @@ export class StatisticsComponent implements OnInit {
     this.addData();
     this.buildSvg();
     this.addXandYAxis();
-    this.drawLineAndPath();
+     this.drawLineAndPath();
   }
   private addData() {
 
     this.productService.getStitistics().subscribe((element) => {
-      var stats: { date: Date, value: number}= null;
-      console.log("here"+element);
+      let date : Date;
+      // let stats : {date : any , value: any};
+      let value : number;
       element.forEach((val:any)=> {
-        stats.date.setDate(val._id);
-        stats.value = val.cocktails.length;
+        date= new Date(val._id);
+        value= val.cocktails.length;
+        this.data.push({date,value});
       });
-      this.data.push(stats);
+      console.log(this.data);
     });
-    console.log(this.data);
   }
   private buildSvg() {
     this.svg = d3
@@ -75,7 +76,7 @@ export class StatisticsComponent implements OnInit {
     // Configure the X Axis
     this.svg
       .append('g')
-      .attr('transform', 'translate(0,' + this.height + ')')
+      .attr('transform', 'translate(0,' + this.height +  ')')
       .call(d3Axis.axisBottom(this.x));
     // Configure the Y Axis
     this.svg

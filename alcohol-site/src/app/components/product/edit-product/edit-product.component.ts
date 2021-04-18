@@ -52,8 +52,6 @@ export class EditProductComponent implements OnInit {
     // this.productService.updateProduct();
 
   }
-  updateTitle(){
-  }
 
   ingReady(){
     return this.readyToConfirm;

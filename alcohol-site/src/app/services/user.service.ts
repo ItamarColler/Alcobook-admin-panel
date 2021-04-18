@@ -20,10 +20,10 @@ export class UserService {
   userCollection = new Subject<Comment>();
   currentUserId = new BehaviorSubject<string>('');
   private userUrl = environment.userUrl;
+  private usertoken = environment.token;
+
   constructor(private http: HttpClient, private router: Router) {
-    // localStorage.setItem('token', data.token);
-    // localStorage.setItem('UserName', data.information.userName);
-    // localStorage.setItem('UserId', data.information._id);
+
   }
   getUsers() {
     //console.log("df")
@@ -47,7 +47,10 @@ export class UserService {
   getToken() {
     return localStorage.getItem('token');
   }
-
+  setToken()
+  {
+    return this.usertoken;
+  }
   getUserName() {
     return this.username.toString();
   }
