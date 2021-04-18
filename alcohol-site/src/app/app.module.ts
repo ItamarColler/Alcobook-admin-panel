@@ -12,7 +12,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { MaterialModule } from './material-module';
-import { EditProductComponent } from './components/product/edit-product/edit-product.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
@@ -27,7 +26,6 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
     ProductDetailsComponent,
     NavigationComponent,
     StatisticsComponent,
-    EditProductComponent,
     DeleteConfirmationComponent,
   ],
   imports: [

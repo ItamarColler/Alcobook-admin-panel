@@ -15,15 +15,15 @@ import * as d3Axis from 'd3';
 export class StatisticsComponent implements OnInit {
   public title = 'Line Chart';
   public data: any[] = [
-    {date: new Date('2010-01-01'), value: 0 },
-    {date: new Date('2010-01-04'), value: 93 },
-    {date: new Date('2010-01-05'), value: 95 },
-    {date: new Date('2010-01-06'), value: 203},
-    {date: new Date('2010-01-07'), value: 110},
-    {date: new Date('2010-01-08'), value: 120},
-    {date: new Date('2010-01-09'), value: 129},
-    {date: new Date('2010-01-10'), value: 180},
-    {date: new Date('2010-01-11'), value: 150},
+    // {date: new Date('2010-01-01'), value: 10 },
+    // // {date: new Date('2010-01-04'), value: 99 },
+    // {date: new Date('2010-01-05'), value: 20 },
+    // // {date: new Date('2010-01-06'), value: 31},
+    // {date: new Date('2010-01-07'), value: 110},
+    // {date: new Date('2010-01-08'), value: 120},
+    // {date: new Date('2010-01-09'), value: 129},
+    // {date: new Date('2010-01-10'), value: 10},
+    // {date: new Date('2010-01-11'), value: 10},
   ];
   private margin = { top: 10, right: 20, bottom: 30, left: 50 };
   private width: number;
@@ -40,15 +40,14 @@ export class StatisticsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.addData();
-    this.buildSvg();
-    this.addXandYAxis();
-     this.drawLineAndPath();
+    // this.buildSvg();
+    // this.addXandYAxis();
+    //  this.drawLineAndPath();
   }
   private addData() {
 
     this.productService.getStitistics().subscribe((element) => {
       let date : Date;
-      // let stats : {date : any , value: any};
       let value : number;
       element.forEach((val:any)=> {
         date= new Date(val._id);
@@ -56,6 +55,9 @@ export class StatisticsComponent implements OnInit {
         this.data.push({date,value});
       });
       console.log(this.data);
+      this.buildSvg();
+      this.addXandYAxis();
+      this.drawLineAndPath();
     });
   }
   private buildSvg() {

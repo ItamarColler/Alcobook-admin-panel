@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditProductComponent } from './components/product/edit-product/edit-product.component';
 import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 import { ProductComponent } from './components/product/product.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
@@ -23,9 +22,7 @@ const routes: Routes = [
   {
     path: 'product-details', component: ProductDetailsComponent
   },
-  {
-    path: 'edit-product', component: EditProductComponent
-  },
+
   {
     path: 'confirm-delete', component: DeleteConfirmationComponent
   }
